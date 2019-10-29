@@ -1,9 +1,6 @@
 package com.example.test.demoapp.dataSource;
 
-import com.example.test.demoapp.core.BillMapper;
-import com.example.test.demoapp.core.CustomerMapper;
-import com.example.test.demoapp.core.EmployeeMapper;
-import com.example.test.demoapp.core.RoomMapper;
+import com.example.test.demoapp.core.*;
 import com.example.test.demoapp.object.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
@@ -13,6 +10,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import javax.sql.DataSource;
+import java.sql.SQLException;
 import java.util.List;
 import java.util.Map;
 
@@ -29,7 +27,7 @@ public class Template {
         this.jdbcTemplateObject = new JdbcTemplate(dataSource);
     }
 
-    private List<Customer> listCustomer() {
+    private List<Customer> listCustomer() throws SQLException {
         String query = "SELECT * FROM customer";
         SqlQuery<Customer> sqlQuery = new SqlQuery<Customer>() {
             @Override
@@ -43,7 +41,7 @@ public class Template {
         return lists;
     }
 
-    public List<Room> listRoom() {
+    public List<Room> listRoom() throws SQLException{
         String query = "SELECT * FROM room";
         SqlQuery<Room> sqlQuery = new SqlQuery<Room>() {
             @Override
@@ -57,8 +55,8 @@ public class Template {
         return lists;
     }
 
-    private List<Employee> listEmployee() {
-        String SQL_Query = "SELECT * FROM employee";
+    private List<Employee> listEmployee() throws SQLException{
+        String query = "SELECT * FROM employee";
         SqlQuery<Employee> sqlQuery = new SqlQuery<Employee>() {
             @Override
             protected RowMapper<Employee> newRowMapper(Object[] objects, Map<?, ?> map) {
@@ -66,7 +64,7 @@ public class Template {
             }
         };
         sqlQuery.setDataSource(dataSource);
-        sqlQuery.setSql(SQL_Query);
+        sqlQuery.setSql(query);
         List<Employee> lists = sqlQuery.execute();
         return lists;
     }
@@ -79,7 +77,7 @@ public class Template {
         }
     }
 
-    public void print(){
+    public void print() throws SQLException{
         System.out.println("-----LIST-----");
         System.out.println("List Room: ");
         for (Room room : this.listRoom()){
@@ -97,38 +95,68 @@ public class Template {
         }
 
         System.out.println("List services: ");
-        System.out.println("1.VIP       : 2500000");
-        System.out.println("2.Manual    : 200000");
+        for (Services services : this.listServices()){
+            System.out.printf("%-20s%-20s%-20d\n",services.getId(),
+                    services.getName(), services.getPrice());
+        }
     }
 
-    public void addRoom(Room room){
+    public void addServices(Services services){
+        String query = "INSERT INTO services VALUES(?,?,?)";
+        jdbcTemplateObject.update(query, services.getId(),
+                services.getName(), services.getPrice());
+        System.out.println("Success!");
+    }
+
+    public List<Services> listServices(){
+        String query = "SELECT * FROM services";
+        SqlQuery<Services> sqlQuery = new SqlQuery<Services>() {
+            @Override
+            protected RowMapper<Services> newRowMapper(Object[] objects, Map<?, ?> map) {
+                return new ServicesMapper();
+            }
+        };
+        sqlQuery.setDataSource(dataSource);
+        sqlQuery.setSql(query);
+        List<Services> lists = sqlQuery.execute();
+        return lists;
+    }
+
+    public Services getServices(String id) throws SQLException{
+        String query = "SELECT * FROM services WHERE ser_id = ?";
+        Services services = jdbcTemplateObject.queryForObject(query,
+                new Object[] {id}, new ServicesMapper());
+        return services;
+    }
+
+    public void addRoom(Room room) throws SQLException{
         String query = "INSERT INTO room VALUES(?,?,?)";
         jdbcTemplateObject.update(query, room.getId_Room(),
                 room.getPrice_Room(), "not");
         System.out.println("Success!");
     }
 
-    public void deleteRoom(String id) {
+    public void deleteRoom(String id) throws SQLException{
         String query = "DELETE FROM room WHERE r_id = ?";
         jdbcTemplateObject.update(query,id);
         System.out.println("Success!");
     }
 
-    public Room getRoom(String id) {
+    public Room getRoom(String id) throws SQLException{
         String query = "SELECT * FROM room WHERE r_id = ?";
         Room room = jdbcTemplateObject.queryForObject(query,
                 new Object[] {id}, new RoomMapper());
         return room;
     }
 
-    public void addEmployee(Employee employee){
+    public void addEmployee(Employee employee) throws SQLException{
         String query = "INSERT INTO employee VALUES(?,?,?)";
         jdbcTemplateObject.update(query, employee.getId(), employee.getName(),
                 employee.getAge(), employee.getSalary(), employee.getPhoneNumber());
         System.out.println("Success!");
     }
 
-    public void insertBooking(Customer customer, Bill bill, String id_Employee,
+    public void insertBooking (Customer customer, Bill bill, String id_Employee,
                                String id_Room, String date){
         String query1 = "INSERT INTO customer VALUES(?,?,?,?,?)";
         String query2 = "INSERT INTO bill VALUES(?,?,?)";
@@ -146,16 +174,14 @@ public class Template {
         System.out.println("Success!");
     }
 
-    public void deleteBooking(String id,String id_Room) {
+    public void deleteBooking (String id,String id_Room) {
         String query3 = "DELETE FROM booking WHERE c_id = ?";
-        String query1 = "DELETE FROM customer WHERE c_id = ?";
         String query2 = "DELETE FROM bill WHERE b_id = ?";
         String query4 = "UPDATE room SET r_type = 'not' WHERE r_id = ?";
 
         jdbcTemplateObject.update(query3, id);
         jdbcTemplateObject.update(query4, id_Room);
         jdbcTemplateObject.update(query2, id);
-        jdbcTemplateObject.update(query1, id);
         System.out.println("Success!");
     }
 
@@ -167,7 +193,7 @@ public class Template {
         return customer;
     }
 
-    public Bill getBill(String id) {
+    public Bill getBill (String id) {
         String query = "SELECT * FROM bill " +
                 "WHERE b_id = ?";
         Bill bill = jdbcTemplateObject.queryForObject(query,
@@ -182,7 +208,7 @@ public class Template {
                 start, end);
     }
 
-    public String findRoom(String id) {
+    public String findRoom (String id) {
         String query = "SELECT r_id FROM booking WHERE c_id = ?";
         String roomID = jdbcTemplateObject.queryForObject(query,
                 new Object[] {id}, String.class);

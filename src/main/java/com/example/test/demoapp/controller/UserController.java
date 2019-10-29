@@ -7,6 +7,7 @@ import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 import org.springframework.stereotype.Controller;
 
+import java.sql.SQLException;
 import java.util.Scanner;
 
 @Controller
@@ -29,29 +30,25 @@ public class UserController implements FunctionDAO {
         employee = new Employee();
     }
 
-    private long calculating(long price, int day, int choice){
+    private long calculating(long price, int day, String choice) throws SQLException {
+        Services services;
+        services = jdbcTemplate.getServices(choice);
+
         long totalMoney = 0;
 
         if (day >= 7){
-            if (choice == 1){
-                totalMoney = (day * price + 2500000) / 10;
-            }else {
-                totalMoney = (day * price + 200000) / 10;
-            }
+            totalMoney = (day * price + services.getPrice()) / 10;
         }else {
-            if (choice == 1){
-                totalMoney = (day * price + 2500000);
-            }else {
-                totalMoney = (day * price + 200000);
-            }
+            totalMoney = (day * price + services.getPrice());
+
         }
         return totalMoney;
     }
 
     @Override
-    public void book() {
-        int day, service;
-        String date, idRoom;
+    public void book() throws SQLException {
+        int day;
+        String date, idRoom, idService;
         Room room;
         init();
 
@@ -63,13 +60,13 @@ public class UserController implements FunctionDAO {
         System.out.println("Input room: ");
         idRoom = scanner.nextLine();
         System.out.println("Select services:");
-        service = scanner.nextInt();
+        idService = scanner.nextLine();
         System.out.println("How much days: ");
         day = scanner.nextInt();
         room = jdbcTemplate.getRoom(idRoom);
         bill.setId_Bill(customer.getId());
         bill.setMoney_Bill(calculating(
-                room.getPrice_Room(),day,service));
+                room.getPrice_Room(),day,idService));
         bill.setDate_Bill(date);
 
         System.out.println("Total money payment: " + bill.getMoney_Bill());
@@ -78,7 +75,7 @@ public class UserController implements FunctionDAO {
     }
 
     @Override
-    public void show() {
+    public void show() throws SQLException {
         jdbcTemplate.print();
     }
 

@@ -2,13 +2,14 @@ package com.example.test.demoapp.service;
 
 import com.example.test.demoapp.controller.UserController;
 
+import java.sql.SQLException;
 import java.util.Scanner;
 
 public class User {
     private UserController controller = new UserController();
     private Scanner scanner = new Scanner(System.in);
 
-    public void run(){
+    public void run() throws SQLException {
         int choice = 0;
 
         do {
