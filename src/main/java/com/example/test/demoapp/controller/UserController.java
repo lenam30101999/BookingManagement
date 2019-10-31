@@ -97,7 +97,23 @@ public class UserController implements FunctionDAO {
 
     @Override
     public void suggest() {
+        int choice = 0;
 
+        System.out.println("Do you want to find what type of room ?");
+        System.out.println("1.VIP");
+        System.out.println("2.Manual");
+        System.out.println("Choice: ");
+        choice = scanner.nextInt();
+
+        switch (choice){
+            case 1:{
+
+            }
+
+            case 2:{
+
+            }
+        }
     }
 
     @Override
