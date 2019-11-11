@@ -13,10 +13,8 @@ import java.util.Scanner;
 @Controller
 public class UserController implements FunctionDAO {
 
-    private Scanner scanner = new Scanner(System.in);
-
-    private ApplicationContext context = new ClassPathXmlApplicationContext("beans.xml");
-    private Template jdbcTemplate = (Template) context.getBean("template");
+    private final ApplicationContext context = new ClassPathXmlApplicationContext("beans.xml");
+    private final Template jdbcTemplate = (Template) context.getBean("template");
 
     private Customer customer;
     private Bill bill;
@@ -70,7 +68,7 @@ public class UserController implements FunctionDAO {
         bill.setDate_Bill(date);
 
         System.out.println("Total money payment: " + bill.getMoney_Bill());
-        jdbcTemplate.insertBooking(customer , bill, "01",
+        jdbcTemplate.insertBooking(customer , bill, "N10",
                 idRoom, date);
     }
 
@@ -97,23 +95,7 @@ public class UserController implements FunctionDAO {
 
     @Override
     public void suggest() {
-        int choice = 0;
-
-        System.out.println("Do you want to find what type of room ?");
-        System.out.println("1.VIP");
-        System.out.println("2.Manual");
-        System.out.println("Choice: ");
-        choice = scanner.nextInt();
-
-        switch (choice){
-            case 1:{
-
-            }
-
-            case 2:{
-
-            }
-        }
+        
     }
 
     @Override
@@ -127,5 +109,10 @@ public class UserController implements FunctionDAO {
         System.out.println("Bill: " + bill.getMoney_Bill());
 
         jdbcTemplate.deleteBooking(id, jdbcTemplate.findRoom(id));
+    }
+
+    @Override
+    public Template connect() {
+        return jdbcTemplate;
     }
 }

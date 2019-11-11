@@ -1,13 +1,12 @@
-package com.example.test.demoapp;
+ package com.example.test.demoapp;
 
-import com.example.test.demoapp.controller.UserController;
-import com.example.test.demoapp.service.User;
 
+import com.example.test.demoapp.service.UserRun;
 import java.sql.SQLException;
 
 public class MainApp {
     public static void main(String[] args) throws SQLException {
-        User user = new User();
+        UserRun user = new UserRun();
         user.run();
     }
 }

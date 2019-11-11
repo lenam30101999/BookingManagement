@@ -5,7 +5,7 @@ import com.example.test.demoapp.controller.UserController;
 import java.sql.SQLException;
 import java.util.Scanner;
 
-public class User {
+public class UserRun {
     private UserController controller = new UserController();
     private Scanner scanner = new Scanner(System.in);
 
@@ -39,6 +39,11 @@ public class User {
 
                 case 4:{
                     controller.search();
+                    break;
+                }
+                
+                case 5:{
+                    controller.suggest();
                     break;
                 }
             }

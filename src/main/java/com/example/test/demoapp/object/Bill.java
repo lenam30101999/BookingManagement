@@ -19,15 +19,18 @@ public class Bill {
 
     @Column(name = "b_date")
     private String date_Bill;
-
+    
+    private String employee_Bill;
+    
     public Bill(){
 
     }
 
-    public Bill(String id_Bill, long money_Bill, String date_Bill) {
+    public Bill(String id_Bill, long money_Bill, String date_Bill, String employee_Bill) {
         this.id_Bill = id_Bill;
         this.money_Bill = money_Bill;
         this.date_Bill = date_Bill;
+        this.employee_Bill = employee_Bill;
     }
 
     public String getId_Bill() {
@@ -52,6 +55,14 @@ public class Bill {
 
     public void setDate_Bill(String date_Bill) {
         this.date_Bill = date_Bill;
+    }
+
+    public String getEmployee_Bill() {
+        return employee_Bill;
+    }
+
+    public void setEmployee_Bill(String employee_Bill) {
+        this.employee_Bill = employee_Bill;
     }
 
 }
