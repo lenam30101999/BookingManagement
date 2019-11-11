@@ -4,12 +4,10 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
-import java.util.Scanner;
 
 @Entity
 @Table(name = "bill")
 public class Bill {
-    Scanner scanner = new Scanner(System.in);
 
     @Id
     private String id_Bill;

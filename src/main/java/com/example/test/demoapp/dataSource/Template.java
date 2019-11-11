@@ -11,6 +11,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import javax.sql.DataSource;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
@@ -68,6 +69,10 @@ public class Template {
                 "foreign key (c_id) references customer(c_id)," +
                 "foreign key (e_id) references employee(e_id)," +
                 "foreign key (r_id) references room(r_id));";
+        
+        String queryCreateLogin = "create table if not exist login(" +
+"                   username	VARCHAR(15)	NOT NULL	PRIMARY KEY," +
+"                   password	VARCHAR(15)     NOT NULL);";
 
         jdbcTemplateObject.update(queryCreateBill);
         jdbcTemplateObject.update(queryCreateEmployee);
@@ -75,6 +80,7 @@ public class Template {
         jdbcTemplateObject.update(queryCreateRoom);
         jdbcTemplateObject.update(queryCreateServices);
         jdbcTemplateObject.update(queryCreateBooking);
+        jdbcTemplateObject.update(queryCreateLogin);
     }
     
     public List<Customer> listCustomer() throws SQLException {
@@ -213,9 +219,8 @@ public class Template {
     }
 
     public void insertBooking (Customer customer, Bill bill, String id_Employee,
-                               String id_Room, String date){
-        this.createTable();
-        String query1 = "INSERT INTO customer VALUES(?,?,?,?,?)";
+                               ArrayList<String> id_Room, String date){
+        String query1 = "INSERT IGNORE INTO customer VALUES(?,?,?,?,?)";
         String query2 = "INSERT INTO bill VALUES(?,?,?,?)";
         String query4 = "UPDATE room SET r_type = 'yes' WHERE (r_id = ?)";
         String query5 = "INSERT INTO booking VALUES(?,?,?,?,?,?)";
@@ -225,9 +230,13 @@ public class Template {
                 customer.getAddress(), customer.getAge(), customer.getPhoneNumber());
         jdbcTemplateObject.update(query2, bill.getId_Bill(),
                 bill.getMoney_Bill(), bill.getDate_Bill(), "N10");
-        jdbcTemplateObject.update(query4, id_Room);
-        jdbcTemplateObject.update(query5, customer.getId(),
-                id_Employee, bill.getId_Bill(), id_Room, date, 2);
+        
+        for(String id : id_Room){
+            jdbcTemplateObject.update(query4, id);
+            jdbcTemplateObject.update(query5, customer.getId(),
+                "N10", bill.getId_Bill(), id, date, id_Room.size());
+        }
+  
     }
 
     public void deleteBooking (String id,String id_Room) {

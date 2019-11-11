@@ -80,6 +80,8 @@ public class BillForm extends javax.swing.JFrame {
         sua4 = new javax.swing.JButton();
         xoa4 = new javax.swing.JButton();
         thoat4 = new javax.swing.JButton();
+        jButton1 = new javax.swing.JButton();
+        jButton2 = new javax.swing.JButton();
         jPanel22 = new javax.swing.JPanel();
         jScrollPane5 = new javax.swing.JScrollPane();
         jTableHOADON = new javax.swing.JTable();
@@ -116,7 +118,7 @@ public class BillForm extends javax.swing.JFrame {
 
         jLabel35.setText("Ngày");
 
-        jLabel36.setText("Giá Hóa Đơn");
+        jLabel36.setText("Đơn giá");
 
         jTextFieldMAHD.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -156,6 +158,22 @@ public class BillForm extends javax.swing.JFrame {
             }
         });
 
+        jButton1.setIcon(new javax.swing.ImageIcon("C:\\Users\\BVCN 88\\Desktop\\hinh\\search.png")); // NOI18N
+        jButton1.setText("Tìm kiếm");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+
+        jButton2.setIcon(new javax.swing.ImageIcon("C:\\Users\\BVCN 88\\Desktop\\hinh\\table.png")); // NOI18N
+        jButton2.setText("Hiển thị");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel21Layout = new javax.swing.GroupLayout(jPanel21);
         jPanel21.setLayout(jPanel21Layout);
         jPanel21Layout.setHorizontalGroup(
@@ -173,7 +191,9 @@ public class BillForm extends javax.swing.JFrame {
                 .addGroup(jPanel21Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel21Layout.createSequentialGroup()
                         .addGap(13, 13, 13)
-                        .addComponent(sua4))
+                        .addComponent(sua4)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jButton1))
                     .addGroup(jPanel21Layout.createSequentialGroup()
                         .addGap(40, 40, 40)
                         .addGroup(jPanel21Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
@@ -182,9 +202,11 @@ public class BillForm extends javax.swing.JFrame {
                             .addComponent(jTextFieldMANVHD)
                             .addComponent(jTextFieldMAHD)))
                     .addGroup(jPanel21Layout.createSequentialGroup()
-                        .addGap(32, 32, 32)
-                        .addComponent(thoat4)))
-                .addContainerGap(37, Short.MAX_VALUE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(thoat4)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jButton2)))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel21Layout.setVerticalGroup(
             jPanel21Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -194,9 +216,9 @@ public class BillForm extends javax.swing.JFrame {
                     .addComponent(jLabel32)
                     .addComponent(jTextFieldMAHD, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(jPanel21Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel33)
-                    .addComponent(jTextFieldMANVHD, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(jPanel21Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jTextFieldMANVHD, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel33))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel21Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel35)
@@ -208,11 +230,13 @@ public class BillForm extends javax.swing.JFrame {
                 .addGap(56, 56, 56)
                 .addGroup(jPanel21Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(them4)
-                    .addComponent(sua4))
+                    .addComponent(sua4)
+                    .addComponent(jButton1))
                 .addGap(26, 26, 26)
                 .addGroup(jPanel21Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(xoa4)
-                    .addComponent(thoat4))
+                    .addComponent(thoat4)
+                    .addComponent(jButton2))
                 .addContainerGap(32, Short.MAX_VALUE))
         );
 
@@ -285,12 +309,12 @@ public class BillForm extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 831, Short.MAX_VALUE)
+            .addGap(0, 853, Short.MAX_VALUE)
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(layout.createSequentialGroup()
-                    .addGap(0, 6, Short.MAX_VALUE)
+                    .addGap(0, 9, Short.MAX_VALUE)
                     .addComponent(jPanel6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGap(0, 6, Short.MAX_VALUE)))
+                    .addGap(0, 9, Short.MAX_VALUE)))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -341,9 +365,38 @@ public class BillForm extends javax.swing.JFrame {
         jTextFieldGIAHD.setText(model.getValueAt(i, 4).toString());
     }//GEN-LAST:event_jTableHOADONMouseClicked
 
-    /**
-     * @param args the command line arguments
-     */
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        String colTieuDe1[] = new String[]{"Mã Hóa Đơn", "Mã Nhân Viên", "Ngày", "Giá Hóa Đơn"};
+        ArrayList<Bill> listBills = layDanhSachHoaDon();
+
+        DefaultTableModel model = new DefaultTableModel(colTieuDe1, 0);
+
+        Object[] row;
+
+        for (int i = 0; i < listBills.size(); i++) {
+            
+            if(listBills.get(i).getId_Bill().equals(jTextFieldMAHD)){
+                row = new Object[4];
+
+                row[0] = listBills.get(i).getId_Bill();
+                row[1] = listBills.get(i).getEmployee_Bill();
+                row[2] = listBills.get(i).getDate_Bill();
+                row[3] = listBills.get(i).getMoney_Bill();
+            
+                model.addRow(row);
+                break;
+            }
+
+        }
+
+        jTableHOADON.setModel(model);
+    }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        this.hienThiDanhSachHoaDon();
+    }//GEN-LAST:event_jButton2ActionPerformed
+
+
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
@@ -378,6 +431,8 @@ public class BillForm extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel31;
     private javax.swing.JLabel jLabel32;
     private javax.swing.JLabel jLabel33;
