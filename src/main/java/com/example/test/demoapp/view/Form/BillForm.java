@@ -1,4 +1,5 @@
 package com.example.test.demoapp.view.Form;
+import com.example.test.demoapp.controller.UserController;
 import com.example.test.demoapp.dataSource.Template;
 import com.example.test.demoapp.object.Bill;
 import java.sql.Connection;
@@ -10,10 +11,11 @@ import javax.swing.table.TableModel;
 
 public class BillForm extends javax.swing.JFrame {
     
-    Template connection;
+    UserController connection;
+    
     public BillForm() {
         initComponents();
-        connection = new Template();
+        connection = new UserController();
         hienThiDanhSachHoaDon();
     }
     
@@ -23,7 +25,7 @@ public class BillForm extends javax.swing.JFrame {
     public ArrayList<Bill> layDanhSachHoaDon() {
         ArrayList<Bill> listBills = new ArrayList<Bill>();
         try {
-            listBills = (ArrayList<Bill>) connection.listBills();
+            listBills = (ArrayList<Bill>) connection.connect().listBills();
         } catch (Exception ex) {
             ex.printStackTrace();
 

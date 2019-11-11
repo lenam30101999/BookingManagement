@@ -26,7 +26,7 @@
           <Group type="102" alignment="0" attributes="0">
               <EmptySpace max="-2" attributes="0"/>
               <Component id="jPanel4" min="-2" max="-2" attributes="0"/>
-              <EmptySpace pref="52" max="32767" attributes="0"/>
+              <EmptySpace pref="32" max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -103,25 +103,22 @@
                       <EmptySpace type="separate" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Group type="102" alignment="0" attributes="0">
-                              <EmptySpace min="-2" pref="57" max="-2" attributes="0"/>
+                              <EmptySpace min="-2" pref="16" max="-2" attributes="0"/>
                               <Component id="them1" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace min="-2" pref="93" max="-2" attributes="0"/>
-                              <Component id="thoat1" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace pref="258" max="32767" attributes="0"/>
-                          </Group>
-                          <Group type="102" alignment="0" attributes="0">
-                              <Group type="103" groupAlignment="1" max="-2" attributes="0">
-                                  <Component id="jFormattedTextField1" alignment="0" pref="112" max="32767" attributes="0"/>
-                                  <Component id="jTextFieldSDT" max="32767" attributes="0"/>
-                                  <Component id="jTextFieldTUOI" alignment="0" max="32767" attributes="0"/>
-                                  <Component id="jTextFieldTENKH" alignment="0" max="32767" attributes="0"/>
-                                  <Component id="jTextFieldCMND" alignment="0" max="32767" attributes="0"/>
-                              </Group>
-                              <EmptySpace max="32767" attributes="0"/>
+                              <EmptySpace min="-2" pref="57" max="-2" attributes="0"/>
                               <Component id="jButtonSelected" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace min="-2" pref="131" max="-2" attributes="0"/>
+                              <EmptySpace min="-2" pref="50" max="-2" attributes="0"/>
+                              <Component id="thoat1" min="-2" max="-2" attributes="0"/>
+                          </Group>
+                          <Group type="103" alignment="0" groupAlignment="1" max="-2" attributes="0">
+                              <Component id="jFormattedTextField1" alignment="0" pref="112" max="32767" attributes="0"/>
+                              <Component id="jTextFieldSDT" max="32767" attributes="0"/>
+                              <Component id="jTextFieldTUOI" alignment="0" max="32767" attributes="0"/>
+                              <Component id="jTextFieldTENKH" alignment="0" max="32767" attributes="0"/>
+                              <Component id="jTextFieldCMND" alignment="0" max="32767" attributes="0"/>
                           </Group>
                       </Group>
+                      <EmptySpace min="131" pref="184" max="32767" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
@@ -133,23 +130,15 @@
                           <Component id="jLabel12" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="jTextFieldCMND" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
-                      <Group type="103" groupAlignment="0" attributes="0">
-                          <Group type="102" attributes="0">
-                              <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                              <Group type="103" groupAlignment="3" attributes="0">
-                                  <Component id="jTextFieldTENKH" alignment="3" min="-2" max="-2" attributes="0"/>
-                                  <Component id="jLabel11" alignment="3" min="-2" max="-2" attributes="0"/>
-                              </Group>
-                              <EmptySpace min="-2" pref="17" max="-2" attributes="0"/>
-                              <Group type="103" groupAlignment="3" attributes="0">
-                                  <Component id="jLabel15" alignment="3" min="-2" max="-2" attributes="0"/>
-                                  <Component id="jTextFieldTUOI" alignment="3" min="-2" max="-2" attributes="0"/>
-                              </Group>
-                          </Group>
-                          <Group type="102" alignment="1" attributes="0">
-                              <EmptySpace min="-2" pref="6" max="-2" attributes="0"/>
-                              <Component id="jButtonSelected" min="-2" pref="68" max="-2" attributes="0"/>
-                          </Group>
+                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="3" attributes="0">
+                          <Component id="jTextFieldTENKH" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="jLabel11" alignment="3" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                      <EmptySpace min="-2" pref="17" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="3" attributes="0">
+                          <Component id="jLabel15" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="jTextFieldTUOI" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace type="unrelated" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
@@ -165,6 +154,7 @@
                       <Group type="103" groupAlignment="3" attributes="0">
                           <Component id="them1" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="thoat1" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="jButtonSelected" alignment="3" max="32767" attributes="0"/>
                       </Group>
                       <EmptySpace max="-2" attributes="0"/>
                   </Group>
@@ -234,6 +224,9 @@
             </Component>
             <Component class="javax.swing.JButton" name="jButtonSelected">
               <Properties>
+                <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+                  <Image iconType="2" name="C:\Users\BVCN 88\Desktop\hinh\vn1.mytour.apps.android.jpg"/>
+                </Property>
                 <Property name="text" type="java.lang.String" value="Ch&#x1ecd;n ph&#xf2;ng"/>
               </Properties>
               <Events>

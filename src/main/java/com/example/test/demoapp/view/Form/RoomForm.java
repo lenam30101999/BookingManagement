@@ -17,7 +17,7 @@ public class RoomForm extends javax.swing.JFrame {
     
     public RoomForm() {
         initComponents();
-        connection = new Template();
+        connection = new UserController();
         hienThiDanhSachPhong();
     }
     Connection con=null;
@@ -26,7 +26,7 @@ public class RoomForm extends javax.swing.JFrame {
     public ArrayList<Room> layDanhSachPhong() {
         ArrayList<Room> listRooms = new ArrayList<Room>();
         try {
-           listRooms = (ArrayList<Room>) connection.listRoom();
+           listRooms = (ArrayList<Room>) connection.connect().listRoom();
         } catch (Exception ex) {
             ex.printStackTrace();
 
@@ -48,7 +48,11 @@ public class RoomForm extends javax.swing.JFrame {
             // GÁN GIÁ TRỊ
             row[0] = listRooms.get(i).getId_Room();
             row[1] = listRooms.get(i).getPrice_Room();
-            row[2] = listRooms.get(i).getType_Room();
+            if (listRooms.get(i).getType_Room().equals("not")) {
+                row[2] = "Trống";
+            }else{
+                row[2] = "Đã đặt";
+            }
 
             model.addRow(row);
         }
@@ -287,7 +291,7 @@ public class RoomForm extends javax.swing.JFrame {
             Room room = new Room(jTextFieldMAPHONG.getText(), 
                     Integer.parseInt(jTextFieldGIAPHONG.getText()), 
                     jTextFieldTINHTRANG.getText());
-            connection.addRoom(room);
+            connection.connect().addRoom(room);
             
         } catch (Exception ex) {
             ex.printStackTrace();
@@ -317,7 +321,7 @@ public class RoomForm extends javax.swing.JFrame {
         // TODO add your handling code here:
         try {
             // Tạo một đối tượng để thực hiện công việc
-            connection.deleteRoom(jTextFieldMAPHONG.getText());
+            connection.connect().deleteRoom(jTextFieldMAPHONG.getText());
         } catch (Exception ex) {
 
             ex.printStackTrace();

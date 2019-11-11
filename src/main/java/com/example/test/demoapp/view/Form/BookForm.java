@@ -3,6 +3,7 @@ package com.example.test.demoapp.view.Form;
 import com.example.test.demoapp.dataSource.Template;
 import com.example.test.demoapp.object.Bill;
 import com.example.test.demoapp.object.Customer;
+import com.example.test.demoapp.view.RunView;
 import java.sql.Connection;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -12,10 +13,10 @@ import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
-public class CustomerForm extends javax.swing.JFrame {
+public class BookForm extends javax.swing.JFrame {
     
     private Template connection;
-    public CustomerForm() {
+    public BookForm() {
         initComponents();
         connection = new Template();
     }
@@ -82,6 +83,7 @@ public class CustomerForm extends javax.swing.JFrame {
 
         jLabel2.setText("Ngày/tháng/năm");
 
+        jButtonSelected.setIcon(new javax.swing.ImageIcon("C:\\Users\\BVCN 88\\Desktop\\hinh\\vn1.mytour.apps.android.jpg")); // NOI18N
         jButtonSelected.setText("Chọn phòng");
         jButtonSelected.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -104,21 +106,19 @@ public class CustomerForm extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addGroup(jPanel12Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel12Layout.createSequentialGroup()
-                        .addGap(57, 57, 57)
+                        .addGap(16, 16, 16)
                         .addComponent(them1)
-                        .addGap(93, 93, 93)
-                        .addComponent(thoat1)
-                        .addContainerGap(258, Short.MAX_VALUE))
-                    .addGroup(jPanel12Layout.createSequentialGroup()
-                        .addGroup(jPanel12Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                            .addComponent(jFormattedTextField1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 112, Short.MAX_VALUE)
-                            .addComponent(jTextFieldSDT)
-                            .addComponent(jTextFieldTUOI, javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jTextFieldTENKH, javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jTextFieldCMND, javax.swing.GroupLayout.Alignment.LEADING))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGap(57, 57, 57)
                         .addComponent(jButtonSelected)
-                        .addGap(131, 131, 131))))
+                        .addGap(50, 50, 50)
+                        .addComponent(thoat1))
+                    .addGroup(jPanel12Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                        .addComponent(jFormattedTextField1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 112, Short.MAX_VALUE)
+                        .addComponent(jTextFieldSDT)
+                        .addComponent(jTextFieldTUOI, javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(jTextFieldTENKH, javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(jTextFieldCMND, javax.swing.GroupLayout.Alignment.LEADING)))
+                .addGap(131, 184, Short.MAX_VALUE))
         );
         jPanel12Layout.setVerticalGroup(
             jPanel12Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -127,19 +127,14 @@ public class CustomerForm extends javax.swing.JFrame {
                 .addGroup(jPanel12Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel12)
                     .addComponent(jTextFieldCMND, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGroup(jPanel12Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel12Layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addGroup(jPanel12Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jTextFieldTENKH, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel11))
-                        .addGap(17, 17, 17)
-                        .addGroup(jPanel12Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel15)
-                            .addComponent(jTextFieldTUOI, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel12Layout.createSequentialGroup()
-                        .addGap(6, 6, 6)
-                        .addComponent(jButtonSelected, javax.swing.GroupLayout.PREFERRED_SIZE, 68, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(jPanel12Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jTextFieldTENKH, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel11))
+                .addGap(17, 17, 17)
+                .addGroup(jPanel12Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel15)
+                    .addComponent(jTextFieldTUOI, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel12Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jTextFieldSDT, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -151,7 +146,8 @@ public class CustomerForm extends javax.swing.JFrame {
                 .addGap(25, 25, 25)
                 .addGroup(jPanel12Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(them1)
-                    .addComponent(thoat1))
+                    .addComponent(thoat1)
+                    .addComponent(jButtonSelected, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
 
@@ -205,7 +201,7 @@ public class CustomerForm extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(52, Short.MAX_VALUE))
+                .addContainerGap(32, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -224,7 +220,7 @@ public class CustomerForm extends javax.swing.JFrame {
 
     private void them1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_them1ActionPerformed
         //book:
-
+        
     }//GEN-LAST:event_them1ActionPerformed
 
     private void thoat1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_thoat1ActionPerformed
@@ -233,12 +229,15 @@ public class CustomerForm extends javax.swing.JFrame {
         int selected = JOptionPane.showConfirmDialog(this, "Bạn có chắc chắn muốn thoát chương"
             + " trình không", "Thông báo", JOptionPane.YES_NO_CANCEL_OPTION);
         if (selected == JOptionPane.YES_NO_OPTION) {
+            RunView runView = new RunView();
+            runView.setVisible(true);
             this.dispose();
-
         }
     }//GEN-LAST:event_thoat1ActionPerformed
 
     private void jButtonSelectedActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonSelectedActionPerformed
+        ShowRoom showRoom = new ShowRoom();
+        showRoom.setVisible(true);
         
     }//GEN-LAST:event_jButtonSelectedActionPerformed
 
@@ -259,21 +258,23 @@ public class CustomerForm extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(CustomerForm.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(BookForm.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(CustomerForm.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(BookForm.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(CustomerForm.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(BookForm.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(CustomerForm.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(BookForm.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
+        //</editor-fold>
         //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new CustomerForm().setVisible(true);
+                new BookForm().setVisible(true);
             }
         });
     }

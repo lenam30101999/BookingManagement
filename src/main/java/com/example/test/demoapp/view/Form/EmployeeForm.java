@@ -1,10 +1,6 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package com.example.test.demoapp.view.Form;
 
+import com.example.test.demoapp.controller.UserController;
 import com.example.test.demoapp.dataSource.Template;
 import com.example.test.demoapp.object.Employee;
 import java.sql.Connection;
@@ -15,17 +11,13 @@ import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableModel;
 
-/**
- *
- * @author khoa
- */
 public class EmployeeForm extends javax.swing.JFrame {
     
-    private Template connection;
+    private UserController connection;
 
     public EmployeeForm() {
         initComponents();
-        connection = new Template();
+        connection = new UserController();
         hienThiDanhSachNhanVien();
     }
     Connection con= null;
@@ -34,7 +26,7 @@ public class EmployeeForm extends javax.swing.JFrame {
     public ArrayList<Employee> layDanhSachNhanVien() {
         ArrayList<Employee> listEmployees = new ArrayList<Employee>();
         try {
-           listEmployees = (ArrayList<Employee>) connection.listEmployee();
+           listEmployees = (ArrayList<Employee>) connection.connect().listEmployee();
         } catch (Exception ex) {
             ex.printStackTrace();
 
@@ -346,7 +338,7 @@ public class EmployeeForm extends javax.swing.JFrame {
     private void xoaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_xoaActionPerformed
         // TODO add your handling code here:
         try {
-            connection.deleteEmployee(jTextFieldMANV.getText());
+            connection.connect().deleteEmployee(jTextFieldMANV.getText());
         } catch (Exception ex) {
             ex.printStackTrace();
         }
@@ -368,8 +360,8 @@ public class EmployeeForm extends javax.swing.JFrame {
             model.setValueAt(jTextFieldMANV.getText(), jTableNhanvien.getSelectedRow(), 0);
             model.setValueAt(jTextFieldTENNV.getText().trim(), jTableNhanvien.getSelectedRow(), 1);
             model.setValueAt(jTextFieldTUOINV.getText(), jTableNhanvien.getSelectedRow(), 2);
-            model.setValueAt(jTextFieldLUONG.getText(), jTableNhanvien.getSelectedRow(), 2);
-            model.setValueAt(jTextFieldSDTNV.getText(), jTableNhanvien.getSelectedRow(), 2);
+            model.setValueAt(jTextFieldLUONG.getText(), jTableNhanvien.getSelectedRow(), 3);
+            model.setValueAt(jTextFieldSDTNV.getText(), jTableNhanvien.getSelectedRow(), 4);
         }
     }//GEN-LAST:event_suaActionPerformed
 
@@ -379,7 +371,7 @@ public class EmployeeForm extends javax.swing.JFrame {
             Employee employee = new Employee(jTextFieldMANV.getText(),
                     jTextFieldTENNV.getText(), Integer.parseInt(jTextFieldTUOINV.getText()), 
                     Integer.parseInt(jTextFieldLUONG.getText()), jTextFieldSDTNV.getText());
-            connection.addEmployee(employee);
+            connection.connect().addEmployee(employee);
         } catch (Exception ex) {
             ex.printStackTrace();
         }
