@@ -1,9 +1,8 @@
 package com.example.test.demoapp.view.Form;
 import com.example.test.demoapp.controller.UserController;
-import com.example.test.demoapp.dataSource.Template;
 import com.example.test.demoapp.object.Services;
 import java.sql.Connection;
-import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
@@ -18,7 +17,7 @@ public class ServicesForm extends javax.swing.JFrame {
     public ServicesForm() {
         initComponents();
         connection = new UserController();
-        hienThiDanhSachDichVu();
+        this.hienThiDanhSachDichVu();
     }
     Connection con= null;
     Statement st= null;
@@ -267,17 +266,14 @@ public class ServicesForm extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void them2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_them2ActionPerformed
-        // TODO add your handling code here:
         try {
-            // Tạo một đối tượng để thực hiện công việc
-            st = (Statement) con.createStatement();
             Services services = new Services(jTextFieldMADV.getText(),
                     jTextFieldTENDV.getText(), 
                     Integer.parseInt(jTextFieldGIADV.getText()));
             connection.connect().addServices(services);
-        } catch (Exception ex) {
-            ex.printStackTrace();
+        } catch (NumberFormatException ex) {
         }
+        this.hienThiDanhSachDichVu();
     }//GEN-LAST:event_them2ActionPerformed
 
     private void sua2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_sua2ActionPerformed
@@ -295,19 +291,22 @@ public class ServicesForm extends javax.swing.JFrame {
             model.setValueAt(jTextFieldMADV.getText(), jTableDichvu.getSelectedRow(), 0);
             model.setValueAt(jTextFieldTENDV.getText().trim(), jTableDichvu.getSelectedRow(), 1);
             model.setValueAt(jTextFieldGIADV.getText(), jTableDichvu.getSelectedRow(), 2);
+            
+            String query = "UPDATE services SET ser_price = ? WHERE ser_id = ?";
+            connection.connect().update(query, jTextFieldMADV.getText(),
+                    Long.parseLong(jTextFieldGIADV.getText()));
+            this.hienThiDanhSachDichVu();
         }
 
     }//GEN-LAST:event_sua2ActionPerformed
 
     private void xoa2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_xoa2ActionPerformed
-        // TODO add your handling code here:
         try {
-            // Tạo một đối tượng để thực hiện công việc
-            connection.connect().deleteServices(jTextFieldMADV.getText());
-        } catch (Exception ex) {
-
-            ex.printStackTrace();
+            String query = "DELETE FROM services WHERE ser_ID = ?";
+            connection.connect().delete(query, jTextFieldMADV.getText());
+        } catch (SQLException ex) {
         }
+        this.hienThiDanhSachDichVu();
     }//GEN-LAST:event_xoa2ActionPerformed
 
     private void thoat2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_thoat2ActionPerformed

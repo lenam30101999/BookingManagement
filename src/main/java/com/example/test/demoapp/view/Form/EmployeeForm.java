@@ -1,10 +1,9 @@
 package com.example.test.demoapp.view.Form;
 
 import com.example.test.demoapp.controller.UserController;
-import com.example.test.demoapp.dataSource.Template;
 import com.example.test.demoapp.object.Employee;
 import java.sql.Connection;
-import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
@@ -338,10 +337,11 @@ public class EmployeeForm extends javax.swing.JFrame {
     private void xoaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_xoaActionPerformed
         // TODO add your handling code here:
         try {
-            connection.connect().deleteEmployee(jTextFieldMANV.getText());
-        } catch (Exception ex) {
-            ex.printStackTrace();
+            String query = "DELETE FROM employee WHERE e_ID = ?";
+            connection.connect().delete(query, jTextFieldMANV.getText());
+        } catch (SQLException ex) {
         }
+        this.hienThiDanhSachNhanVien();
     }//GEN-LAST:event_xoaActionPerformed
 
     private void suaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_suaActionPerformed
@@ -362,19 +362,24 @@ public class EmployeeForm extends javax.swing.JFrame {
             model.setValueAt(jTextFieldTUOINV.getText(), jTableNhanvien.getSelectedRow(), 2);
             model.setValueAt(jTextFieldLUONG.getText(), jTableNhanvien.getSelectedRow(), 3);
             model.setValueAt(jTextFieldSDTNV.getText(), jTableNhanvien.getSelectedRow(), 4);
+        
+            String query = "UPDATE employee SET e_price = ? WHERE e_id = ?";
+            connection.connect().update(query, jTextFieldMANV.getText(),
+                    Long.parseLong(jTextFieldLUONG.getText()));
+            this.hienThiDanhSachNhanVien();
         }
     }//GEN-LAST:event_suaActionPerformed
 
     private void themActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_themActionPerformed
-        // TODO add your handling code here:
         try {
             Employee employee = new Employee(jTextFieldMANV.getText(),
                     jTextFieldTENNV.getText(), Integer.parseInt(jTextFieldTUOINV.getText()), 
-                    Integer.parseInt(jTextFieldLUONG.getText()), jTextFieldSDTNV.getText());
+                    Long.parseLong(jTextFieldLUONG.getText()), jTextFieldSDTNV.getText());
             connection.connect().addEmployee(employee);
-        } catch (Exception ex) {
-            ex.printStackTrace();
+            this.hienThiDanhSachNhanVien();
+        } catch (NumberFormatException | SQLException ex) {
         }
+        this.hienThiDanhSachNhanVien();
     }//GEN-LAST:event_themActionPerformed
 
     private void jTextFieldLUONGActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldLUONGActionPerformed

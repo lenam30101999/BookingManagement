@@ -1,12 +1,6 @@
 package com.example.test.demoapp.view;
 
 import com.example.test.demoapp.controller.UserController;
-import com.example.test.demoapp.dataSource.Template;
-import com.example.test.demoapp.object.Account;
-import java.sql.SQLException;
-import java.util.List;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 
 public class LogIn extends javax.swing.JFrame {

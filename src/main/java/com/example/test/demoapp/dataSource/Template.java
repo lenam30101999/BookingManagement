@@ -139,8 +139,7 @@ public class Template {
                 services.getName(), services.getPrice());
     }
     
-    public void deleteServices(String id) throws SQLException{
-        String query = "DELETE FROM services WHERE ser_id = ?";
+    public void delete(String query, String id) throws SQLException{
         jdbcTemplateObject.update(query,id);
     }
     
@@ -170,35 +169,6 @@ public class Template {
         jdbcTemplateObject.update(query, room.getId_Room(),
                 room.getPrice_Room(), "not");
     }
-    
-    public void print() throws SQLException{
-        System.out.println("-----LIST-----");
-        System.out.println("List Room: ");
-        for (Room room : this.listRoom()){
-            if (room.getType_Room().equalsIgnoreCase("not")){
-                System.out.printf("%-20s%-20d%-20s\n",room.getId_Room(),
-                        room.getPrice_Room(), typeOfRoom(room.getPrice_Room()));
-            }
-        }
-
-        System.out.println("List Employee: ");
-        for (Employee employee : this.listEmployee()){
-            System.out.printf("%-20s%-20s%-20d%-20d%-20s\n",employee.getId(),
-                    employee.getName(),employee.getAge(),employee.getSalary(),
-                    employee.getPhoneNumber());
-        }
-
-        System.out.println("List services: ");
-        for (Services services : this.listServices()){
-            System.out.printf("%-20s%-20s%-20d\n",services.getId(),
-                    services.getName(), services.getPrice());
-        }
-    }
-    
-    public void deleteRoom(String id) throws SQLException{
-        String query = "DELETE FROM room WHERE r_id = ?";
-        jdbcTemplateObject.update(query,id);
-    }
 
     public Room getRoom(String id) throws SQLException{
         String query = "SELECT * FROM room WHERE r_id = ?";
@@ -207,13 +177,8 @@ public class Template {
         return room;
     }
     
-    public void deleteEmployee(String id) throws SQLException{
-        String query = "DELETE FROM employee WHERE e_id = ?";
-        jdbcTemplateObject.update(query,id);
-    }
-    
     public void addEmployee(Employee employee) throws SQLException{
-        String query = "INSERT INTO employee VALUES(?,?,?)";
+        String query = "INSERT INTO employee VALUES(?,?,?,?,?)";
         jdbcTemplateObject.update(query, employee.getId(), employee.getName(),
                 employee.getAge(), employee.getSalary(), employee.getPhoneNumber());
     }
@@ -236,16 +201,16 @@ public class Template {
             jdbcTemplateObject.update(query5, customer.getId(),
                 "N10", bill.getId_Bill(), id, date, id_Room.size());
         }
-  
     }
 
-    public void deleteBooking (String id,String id_Room) {
+    public void deleteBooking (String id) {
         String query3 = "DELETE FROM booking WHERE c_id = ?";
         String query2 = "DELETE FROM bill WHERE b_id = ?";
-        String query4 = "UPDATE room SET r_type = 'not' WHERE r_id = ?";
-
+        String query4 = "UPDATE room SET r_type = 'not' WHERE r_id IN ("
+                + "SELECT r_id FROM booking WHERE c_id = ?);";
+        
+        jdbcTemplateObject.update(query4,id);
         jdbcTemplateObject.update(query3, id);
-        jdbcTemplateObject.update(query4, id_Room);
         jdbcTemplateObject.update(query2, id);
     }
 
@@ -298,5 +263,9 @@ public class Template {
         String password = jdbcTemplateObject.queryForObject(query,
                 new Object[] {username}, String.class);
         return password;
+    }
+    
+    public void update(String query, String id, long price){
+        jdbcTemplateObject.update(query, id, price);
     }
 }

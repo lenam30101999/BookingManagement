@@ -17,6 +17,7 @@ import javax.swing.JOptionPane;
 public class BookForm extends javax.swing.JFrame {
     
     private UserController connection;
+    
     public BookForm() {
         initComponents();
         connection = new UserController();
@@ -222,15 +223,12 @@ public class BookForm extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addGroup(jPanel12Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel12Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGroup(jPanel12Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel4)
-                            .addComponent(jLabel15))
+                        .addComponent(jLabel15)
+                        .addComponent(jLabel4)
                         .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel12Layout.createSequentialGroup()
                             .addComponent(jTextFieldTUOI, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGap(8, 8, 8)))
-                    .addGroup(jPanel12Layout.createSequentialGroup()
-                        .addComponent(SoLuongPhong, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)))
+                    .addComponent(SoLuongPhong, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGroup(jPanel12Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel12Layout.createSequentialGroup()
                         .addGroup(jPanel12Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -338,7 +336,7 @@ public class BookForm extends javax.swing.JFrame {
         int day = (int) SoNgayDat.getValue();
         int quantity = (int) SoLuongPhong.getValue();
         ArrayList<String> idRoom = this.idRoom(quantity);
-        
+
         Customer customer = new Customer(jTextFieldCMND.getText(),
             jTextFieldTENKH.getText(),
             Integer.parseInt(jTextFieldTUOI.getText()),

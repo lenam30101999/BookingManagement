@@ -9,7 +9,6 @@ import org.springframework.stereotype.Controller;
 
 import java.sql.SQLException;
 import java.util.ArrayList;
-import java.util.Scanner;
 
 @Controller
 public class UserController implements FunctionDAO {
@@ -37,11 +36,6 @@ public class UserController implements FunctionDAO {
     }
 
     @Override
-    public void show() throws SQLException {
-        jdbcTemplate.print();
-    }
-
-    @Override
     public void search(long start, long end) {
         for (Room room : jdbcTemplate.searchByPrice(start,end)){
             System.out.printf("%-20s%-20d\n",room.getId_Room(),
@@ -50,16 +44,15 @@ public class UserController implements FunctionDAO {
     }
 
     @Override
-    public void suggest() {
+    public void update(String sql, String id, long price) {
         
     }
 
+    
+
     @Override
     public void checkOut(String id) {
-        bill = jdbcTemplate.getBill(id);
-        System.out.println("Bill: " + bill.getMoney_Bill());
-
-        jdbcTemplate.deleteBooking(id, jdbcTemplate.findRoom(id));
+        
     }
 
     @Override

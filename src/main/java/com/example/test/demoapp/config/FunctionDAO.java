@@ -13,14 +13,12 @@ public interface FunctionDAO {
     
     public Template connect();
 
-    public void show() throws SQLException;
-
     public void book(Customer customer, Bill bill, ArrayList<String> idRoom) throws SQLException;
 
     public void checkOut(String id);
 
     public void search(long start, long end);
 
-    public void suggest();
+    public void update(String sql, String idString, long price);
 
 }

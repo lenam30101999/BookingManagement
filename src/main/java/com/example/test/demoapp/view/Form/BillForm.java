@@ -1,6 +1,5 @@
 package com.example.test.demoapp.view.Form;
 import com.example.test.demoapp.controller.UserController;
-import com.example.test.demoapp.dataSource.Template;
 import com.example.test.demoapp.object.Bill;
 import java.sql.Connection;
 import java.sql.Statement;
@@ -32,7 +31,8 @@ public class BillForm extends javax.swing.JFrame {
         }
         return listBills;
     }
-     public void hienThiDanhSachHoaDon() {
+    
+    public void hienThiDanhSachHoaDon() {
         String colTieuDe1[] = new String[]{"Mã Hóa Đơn", "Mã Nhân Viên", "Ngày", "Giá Hóa Đơn"};
         ArrayList<Bill> listBills = layDanhSachHoaDon();
 
@@ -44,16 +44,13 @@ public class BillForm extends javax.swing.JFrame {
 
             row = new Object[4];
 
-            // GÁN GIÁ TRỊ
             row[0] = listBills.get(i).getId_Bill();
-            row[1] = listBills.get(i).getEmployee_Bill();
-            row[2] = listBills.get(i).getDate_Bill();
+            row[2] = listBills.get(i).getEmployee_Bill();
+            row[1] = listBills.get(i).getDate_Bill();
             row[3] = listBills.get(i).getMoney_Bill();
 
             model.addRow(row);
         }
-        
-        //    }catch(ArrayIndexOutOfBoundsException ex){
 
         jTableHOADON.setModel(model);
 
@@ -76,7 +73,6 @@ public class BillForm extends javax.swing.JFrame {
         jTextFieldMANVHD = new javax.swing.JTextField();
         jTextFieldNGAY = new javax.swing.JTextField();
         jTextFieldGIAHD = new javax.swing.JTextField();
-        them4 = new javax.swing.JButton();
         sua4 = new javax.swing.JButton();
         xoa4 = new javax.swing.JButton();
         thoat4 = new javax.swing.JButton();
@@ -91,6 +87,7 @@ public class BillForm extends javax.swing.JFrame {
 
         jPanel6.setBackground(new java.awt.Color(0, 204, 255));
 
+        jLabel31.setBackground(new java.awt.Color(255, 153, 255));
         jLabel31.setFont(new java.awt.Font("Tahoma", 0, 36)); // NOI18N
         jLabel31.setText("HÓA ĐƠN");
 
@@ -123,14 +120,6 @@ public class BillForm extends javax.swing.JFrame {
         jTextFieldMAHD.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jTextFieldMAHDActionPerformed(evt);
-            }
-        });
-
-        them4.setIcon(new javax.swing.ImageIcon("C:\\Users\\BVCN 88\\Desktop\\hinh\\THEM.png")); // NOI18N
-        them4.setText("Thêm");
-        them4.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                them4ActionPerformed(evt);
             }
         });
 
@@ -185,15 +174,9 @@ public class BillForm extends javax.swing.JFrame {
                     .addComponent(jLabel33)
                     .addComponent(jLabel35)
                     .addComponent(jLabel36)
-                    .addGroup(jPanel21Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                        .addComponent(xoa4, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(them4, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                    .addComponent(xoa4, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(sua4))
                 .addGroup(jPanel21Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel21Layout.createSequentialGroup()
-                        .addGap(13, 13, 13)
-                        .addComponent(sua4)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jButton1))
                     .addGroup(jPanel21Layout.createSequentialGroup()
                         .addGap(40, 40, 40)
                         .addGroup(jPanel21Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
@@ -203,10 +186,13 @@ public class BillForm extends javax.swing.JFrame {
                             .addComponent(jTextFieldMAHD)))
                     .addGroup(jPanel21Layout.createSequentialGroup()
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(thoat4)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jButton2)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addGroup(jPanel21Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jButton1)
+                            .addGroup(jPanel21Layout.createSequentialGroup()
+                                .addComponent(thoat4)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jButton2)))))
+                .addContainerGap(18, Short.MAX_VALUE))
         );
         jPanel21Layout.setVerticalGroup(
             jPanel21Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -229,7 +215,6 @@ public class BillForm extends javax.swing.JFrame {
                     .addComponent(jTextFieldGIAHD, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(56, 56, 56)
                 .addGroup(jPanel21Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(them4)
                     .addComponent(sua4)
                     .addComponent(jButton1))
                 .addGap(26, 26, 26)
@@ -333,10 +318,6 @@ public class BillForm extends javax.swing.JFrame {
 
     }//GEN-LAST:event_jTextFieldMAHDActionPerformed
 
-    private void them4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_them4ActionPerformed
-        //them
-    }//GEN-LAST:event_them4ActionPerformed
-
     private void sua4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_sua4ActionPerformed
         //sua
     }//GEN-LAST:event_sua4ActionPerformed
@@ -360,7 +341,7 @@ public class BillForm extends javax.swing.JFrame {
         int i = jTableHOADON.getSelectedRow();
         TableModel model = jTableHOADON.getModel();
         jTextFieldMAHD.setText(model.getValueAt(i, 0).toString());
-        jTextFieldMANVHD.setText(model.getValueAt(i, 1).toString());
+        jTextFieldMANVHD.setText(model.getValueAt(i, 2).toString());
         jTextFieldNGAY.setText(model.getValueAt(i, 3).toString());
         jTextFieldGIAHD.setText(model.getValueAt(i, 4).toString());
     }//GEN-LAST:event_jTableHOADONMouseClicked
@@ -379,8 +360,8 @@ public class BillForm extends javax.swing.JFrame {
                 row = new Object[4];
 
                 row[0] = listBills.get(i).getId_Bill();
-                row[1] = listBills.get(i).getEmployee_Bill();
-                row[2] = listBills.get(i).getDate_Bill();
+                row[2] = listBills.get(i).getEmployee_Bill();
+                row[1] = listBills.get(i).getDate_Bill();
                 row[3] = listBills.get(i).getMoney_Bill();
             
                 model.addRow(row);
@@ -449,7 +430,6 @@ public class BillForm extends javax.swing.JFrame {
     private javax.swing.JTextField jTextFieldMANVHD;
     private javax.swing.JTextField jTextFieldNGAY;
     private javax.swing.JButton sua4;
-    private javax.swing.JButton them4;
     private javax.swing.JButton thoat4;
     private javax.swing.JButton xoa4;
     // End of variables declaration//GEN-END:variables
